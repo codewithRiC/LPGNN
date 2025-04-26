@@ -65,12 +65,12 @@ def run(args):
                 from_args(LabelPerturbation, args)
             ])(data)
 
-            # define model
-            model = from_args(NodeClassifier, args, input_dim=data.num_features, num_classes=data.num_classes)
+            # define model    #TODO: Through this the no.of features and no. of classes are passed to the model
+            model = from_args(NodeClassifier, args, input_dim=data.num_features, num_classes=data.num_classes)   #TODO: This ia the model hich will be trained
 
-            # train the model
-            trainer = from_args(Trainer, args, logger=logger if args.log_mode == LogMode.INDIVIDUAL else None)
-            best_metrics = trainer.fit(model, data)
+            # train the model   #TODO: Trainer contains both the training and validation steps
+            trainer = from_args(Trainer, args, logger=logger if args.log_mode == LogMode.INDIVIDUAL else None) #TODO: This is the trainer which will be used to train the model
+            best_metrics = trainer.fit(model, data) #TODO: This inputs the input data(privatized) model to train      
 
             # process results
             for metric, value in best_metrics.items():
